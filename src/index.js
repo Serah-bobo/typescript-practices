@@ -13,6 +13,15 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
+};
 // strings, number, boolean, any(does not read typeof)
 var id = 5;
 console.log('ID:', id);
@@ -66,6 +75,17 @@ var user = {
     name: "James"
 };
 console.log(user);
+var manager = {
+    name: "Alice",
+    age: 35,
+    employeeId: 1001,
+    department: "Engineering",
+    subordinates: [
+        { name: "Bob", age: 28, employeeId: 1002 },
+        { name: "Charlie", age: 30, employeeId: 1003 }
+    ]
+};
+console.log(manager);
 var userr = {
     id: 1,
     name: "James"
@@ -78,7 +98,7 @@ var person = {
 };
 console.log(person);
 //classes are used in creating objects with specific properties and methods
-//classes takes propersties and a constructor whichh runs when the class is called
+//classes takes properties and a constructor whichh runs when the class is called
 //a constructor is a method that is called when an instance or object of a class is created.it initializes newly created objects
 //this refers to the class we are in
 var people = /** @class */ (function () {
@@ -159,6 +179,30 @@ var circumfrence = /** @class */ (function () {
     circumfrence.pi = 3.14; //static property
     return circumfrence;
 }());
-var shape = new circumfrence("circle");
-console.log(shape);
+var shapes = new circumfrence("circle");
+console.log(shapes);
 console.log(circumfrence.calculatecircumfrence(6));
+//Generics
+// Generics are a powerful feature in TypeScript that allows you to write code that can work with a variety of types while still providing type safety. 
+//They enable you to create reusable components, functions, and classes that can operate on different data types without sacrificing the benefits of static typing.
+var identity = function (arg) { return arg; };
+var number = identity(42);
+var text = identity("Hi");
+console.log(number);
+console.log(text);
+//generic functions
+//Generic functions are functions that can accept arguments and return values of different types, specified by type parameters.
+var reverseArray = function (items) { return items.reverse(); };
+var numbers = [1, 2, 3, 4, 5];
+var reverseNumbers = reverseArray(numbers);
+console.log(reverseNumbers);
+var words = ["apple", "banana", "mango"];
+var reverseWords = reverseArray(words);
+console.log(reverseWords);
+//merge arrays
+//array one has type T and two has type U
+var mergeArrays = function (array1, array2) { return __spreadArray(__spreadArray([], array1, true), array2, true); };
+var numbersArray = [1, 2, 3];
+var stringsArray = ["one", "two", "three"];
+var mergedArray = mergeArrays(numbersArray, stringsArray);
+console.log(mergedArray);
