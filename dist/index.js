@@ -176,3 +176,57 @@ const numbersArray = [1, 2, 3];
 const stringsArray = ["one", "two", "three"];
 const mergedArray = mergeArrays(numbersArray, stringsArray);
 console.log(mergedArray);
+const numberPair = { key: 1, value: "one" };
+console.log(numberPair);
+//generic classes
+class DataStore {
+    constructor() {
+        this.data = [];
+    }
+    addItem(item) {
+        this.data.push(item);
+    }
+    removeItem(item) {
+        this.data = this.data.filter((element) => element !== item);
+    }
+    getItems() {
+        return [...this.data];
+    }
+}
+const numberStorage = new DataStore();
+numberStorage.addItem(10);
+numberStorage.addItem(20);
+numberStorage.removeItem(10);
+console.log(numberStorage.getItems());
+const stringStorage = new DataStore();
+stringStorage.addItem("Hello");
+stringStorage.addItem("world");
+stringStorage.removeItem("Hello");
+console.log(stringStorage.getItems());
+//multiple class types
+class hairStyles {
+    constructor(key, value) {
+        this.key = key;
+        this.value = value;
+    }
+    getKey() {
+        return this.key;
+    }
+    getValue() {
+        return this.value;
+    }
+}
+const pair = new hairStyles(1, 1000);
+console.log(pair.getKey);
+console.log(pair.getValue);
+//extending generic classes
+class hairType extends hairStyles {
+    constructor(key, value, name) {
+        super(key, value);
+        this.getName = () => this.name;
+        this.name = name;
+    }
+}
+const HairIdea = new hairType(1, 2000, "Brazillian locks");
+console.log(HairIdea.getValue);
+console.log(HairIdea.getName);

@@ -206,3 +206,62 @@ var numbersArray = [1, 2, 3];
 var stringsArray = ["one", "two", "three"];
 var mergedArray = mergeArrays(numbersArray, stringsArray);
 console.log(mergedArray);
+var numberPair = { key: 1, value: "one" };
+console.log(numberPair);
+//generic classes
+var DataStore = /** @class */ (function () {
+    function DataStore() {
+        this.data = [];
+    }
+    DataStore.prototype.addItem = function (item) {
+        this.data.push(item);
+    };
+    DataStore.prototype.removeItem = function (item) {
+        this.data = this.data.filter(function (element) { return element !== item; });
+    };
+    DataStore.prototype.getItems = function () {
+        return __spreadArray([], this.data, true);
+    };
+    return DataStore;
+}());
+var numberStorage = new DataStore();
+numberStorage.addItem(10);
+numberStorage.addItem(20);
+numberStorage.removeItem(10);
+console.log(numberStorage.getItems());
+var stringStorage = new DataStore();
+stringStorage.addItem("Hello");
+stringStorage.addItem("world");
+stringStorage.removeItem("Hello");
+console.log(stringStorage.getItems());
+//multiple class types
+var hairStyles = /** @class */ (function () {
+    function hairStyles(key, value) {
+        this.key = key;
+        this.value = value;
+    }
+    hairStyles.prototype.getKey = function () {
+        return this.key;
+    };
+    hairStyles.prototype.getValue = function () {
+        return this.value;
+    };
+    return hairStyles;
+}());
+var pair = new hairStyles(1, 1000);
+console.log(pair.getKey);
+console.log(pair.getValue);
+//extending generic classes
+var hairType = /** @class */ (function (_super) {
+    __extends(hairType, _super);
+    function hairType(key, value, name) {
+        var _this = _super.call(this, key, value) || this;
+        _this.getName = function () { return _this.name; };
+        _this.name = name;
+        return _this;
+    }
+    return hairType;
+}(hairStyles));
+var HairIdea = new hairType(1, 2000, "Brazillian locks");
+console.log(HairIdea.getValue);
+console.log(HairIdea.getName);

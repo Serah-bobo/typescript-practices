@@ -243,3 +243,65 @@ const stringsArray = ["one", "two", "three"];
 const mergedArray = mergeArrays(numbersArray, stringsArray);
 
 console.log(mergedArray); 
+//generic interfaces
+interface dresses <K,V>{
+    key:K;
+    value:V;
+}
+const numberPair:dresses<number,string>={key:1,value:"one"}
+console.log(numberPair)
+//generic classes
+class DataStore<T>{
+    data:T[]=[]
+    
+    addItem(item:T):void{
+        this.data.push(item);
+    }
+    removeItem(item:T):void{
+        this.data=this.data.filter((element)=>element!==item)
+    }
+    getItems():T[]{
+        return [...this.data]
+    }
+}
+const numberStorage=new DataStore<number>()
+numberStorage.addItem(10)
+numberStorage.addItem(20)
+numberStorage.removeItem(10)
+console.log(numberStorage.getItems())
+const stringStorage=new DataStore<string>()
+stringStorage.addItem("Hello")
+stringStorage.addItem("world")
+stringStorage.removeItem("Hello")
+console.log(stringStorage.getItems())
+//multiple class types
+class hairStyles<K,V>{
+    key:K;
+    value:V;
+    constructor(key:K,value:V){
+        this.key=key;
+        this.value=value
+    }
+    getKey():K{
+        return this.key
+    }
+    getValue():V{
+        return this.value
+    }
+}
+const pair=new hairStyles<number,number>(1, 1000)
+console.log(pair.getKey)
+console.log(pair.getValue)
+//extending generic classes
+class hairType<K,V,Y> extends hairStyles<K,V>{
+    name:Y;
+    constructor(key:K,value:V,name:Y){
+        super(key,value)
+        this.name=name
+    }
+    getName=():Y=>this.name
+    }
+
+const HairIdea=new hairType<number,number,string>(1,2000,"Brazillian locks")
+console.log(HairIdea.getValue)
+console.log(HairIdea.getName)
