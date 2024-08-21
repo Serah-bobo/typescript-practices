@@ -249,19 +249,21 @@ var hairStyles = /** @class */ (function () {
     return hairStyles;
 }());
 var pair = new hairStyles(1, 1000);
-console.log(pair.getKey);
-console.log(pair.getValue);
+console.log(pair.getKey());
+console.log(pair.getValue());
 //extending generic classes
 var hairType = /** @class */ (function (_super) {
     __extends(hairType, _super);
     function hairType(key, value, name) {
         var _this = _super.call(this, key, value) || this;
-        _this.getName = function () { return _this.name; };
         _this.name = name;
         return _this;
     }
+    hairType.prototype.getName = function () {
+        return this.name;
+    };
     return hairType;
 }(hairStyles));
 var HairIdea = new hairType(1, 2000, "Brazillian locks");
-console.log(HairIdea.getValue);
-console.log(HairIdea.getName);
+console.log(HairIdea.getValue());
+console.log(HairIdea.getName());

@@ -290,8 +290,8 @@ class hairStyles<K,V>{
     }
 }
 const pair=new hairStyles<number,number>(1, 1000)
-console.log(pair.getKey)
-console.log(pair.getValue)
+console.log(pair.getKey())
+console.log(pair.getValue())
 //extending generic classes
 class hairType<K,V,Y> extends hairStyles<K,V>{
     name:Y;
@@ -299,9 +299,11 @@ class hairType<K,V,Y> extends hairStyles<K,V>{
         super(key,value)
         this.name=name
     }
-    getName=():Y=>this.name
+    getName():Y{
+        return this.name
+    }
     }
 
 const HairIdea=new hairType<number,number,string>(1,2000,"Brazillian locks")
-console.log(HairIdea.getValue)
-console.log(HairIdea.getName)
+console.log(HairIdea.getValue())
+console.log(HairIdea.getName())
